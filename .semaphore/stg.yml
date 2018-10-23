@@ -1,0 +1,30 @@
+version: v1.0
+name: Staging environment
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+
+blocks:
+  - name: Deploy
+    task:
+      jobs:
+      - name: Deploy
+        commands:
+          - checkout
+          - ls -1
+          - echo $APP_ENV
+          - echo "Docker build..."
+          - echo "done"
+
+  - name: Smoke tests
+    task:
+      jobs:
+      - name: Smoke
+        commands:
+          - checkout
+          - echo "make smoke"
+
+promotions:
+  - name: Production deployment
+    pipeline_file: prod.yml

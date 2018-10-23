@@ -63,5 +63,5 @@ blocks:
           - echo "make docker.push"
 
 promotions:
-  - name: Production deployment
-    pipeline_file: prod.yml
+  - name: Staging deployment
+    pipeline_file: stg.yml
